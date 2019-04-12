@@ -10,25 +10,24 @@ script:
 
 after_success:
   - docker build -t dingran1019/docker-multi-client ./client
-  - docker build -t dingran1019/docker-multi-nginx ./client
-  - docker build -t dingran1019/docker-multi-server ./client
-  - docker build -t dingran1019/docker-multi-worker ./client
+  - docker build -t dingran1019/docker-multi-nginx ./nginx
+  - docker build -t dingran1019/docker-multi-server ./server
+  - docker build -t dingran1019/docker-multi-worker ./worker
   # login docker cli
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push dingran1019/docker-multi-client
   - docker push dingran1019/docker-multi-nginx
   - docker push dingran1019/docker-multi-server
   - docker push dingran1019/docker-multi-worker
-
-deploy:
-  provider: elasticbeanstalk
-  region: "us-east-1"
-  app: "docker-multi"
-  env: "DockerMulti-env"
-  bucket_name: "elasticbeanstalk-us-east-1-184722397872"
-  bucket_path: "docker-multi"
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: "$AWS_SECRET_KEY"
+# deploy:
+#   provider: elasticbeanstalk
+#   region: "us-east-1"
+#   app: "docker-multi"
+#   env: "DockerMulti-env"
+#   bucket_name: "elasticbeanstalk-us-east-1-184722397872"
+#   bucket_path: "docker-multi"
+#   on:
+#     branch: master
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key:
+#     secure: "$AWS_SECRET_KEY"
