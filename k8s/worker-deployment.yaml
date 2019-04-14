@@ -3,15 +3,15 @@ kind: Deployment
 metadata:
   name: worker-deployment
 spec:
-  replicas: 1 
+  replicas: 1
   selector:
     matchLabels:
       component: worker
   template:
     metadata:
       labels:
-        component: worker 
+        component: worker
     spec:
       containers:
-        - name: worker 
+        - name: worker
           image: dingran1019/multi-worker
