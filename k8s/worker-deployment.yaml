@@ -15,3 +15,8 @@ spec:
       containers:
         - name: worker
           image: dingran1019/multi-worker
+          env:
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service
+            - name: REDIS_POST
+              value: "6379"
